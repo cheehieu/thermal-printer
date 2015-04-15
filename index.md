@@ -1,4 +1,8 @@
-# thermal-printer
+---
+layout: project
+title: thermal-printer
+subtitle: A thermal printer cape reference design controlled by the PRU-ICSS on the BeagleBone Black.
+---
 
 <img src="http://niftyhedgehog.com/thermal-printer/images/print_head.jpg">
 
