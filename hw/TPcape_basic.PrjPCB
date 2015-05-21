@@ -105,6 +105,23 @@ GenerateClassCluster=0
 DocumentUniqueId=MVYJVSRS
 
 [Document5]
+DocumentPath=TPcape_ultra.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=XEVSUTOG
+
+[Document6]
 DocumentPath=libs\BeagleBone_Black_RevB4.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -121,7 +138,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document6]
+[Document7]
 DocumentPath=docs\motor\DRV8833C_PWP_16\DRV8833C_HTSSOP.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -138,7 +155,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document7]
+[Document8]
 DocumentPath=docs\misc\LM393\LM393_DGK_8.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -155,7 +172,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=EATPDHFA
 
-[Document8]
+[Document9]
 DocumentPath=docs\power\sn74lvc1g08\sn74lvc1g08.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -172,7 +189,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=CCYEIHPM
 
-[Document9]
+[Document10]
 DocumentPath=docs\misc\SN74LVC244A\SN74LVC244A_PW_20.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -189,7 +206,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document10]
+[Document11]
 DocumentPath=libs\BEAGLEBONEBLACK_REV A5B.SCHLIB
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -206,7 +223,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document11]
+[Document12]
 DocumentPath=docs\motor\DRV8833C_PWP_16\DRV8833C_HTSSOP.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -223,7 +240,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document12]
+[Document13]
 DocumentPath=docs\misc\LM393\LM393_DGK_8.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -240,7 +257,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=RBKVJCBN
 
-[Document13]
+[Document14]
 DocumentPath=docs\power\sn74lvc1g08\sn74lvc1g08.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -257,7 +274,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=UMMVJAIM
 
-[Document14]
+[Document15]
 DocumentPath=docs\misc\SN74LVC244A\SN74LVC244A_PW_20.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
