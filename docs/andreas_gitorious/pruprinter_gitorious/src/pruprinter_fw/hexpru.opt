@@ -1,0 +1,26 @@
+/*
+ * hexpru.opt
+ *
+ * Command file for use with TI's hexpru tool to generate binary PRU images
+ * from the PRU C compiler output file. This file is to be passed to the hexpru
+ * tool which should be invoked as a post-build step in CCS using the following
+ * command:
+ * "${CG_TOOL_HEX}" "${PROJECT_ROOT}/hexpru.opt" "${BuildArtifactFileName}"
+ *
+ * Written by Andreas Dannenberg, 01/01/2014
+ *
+ * Copyright (C) 2014 Texas Instruments Incorporated - http://www.ti.com/
+ * ALL RIGHTS RESERVED
+ */
+
+-m                  /* Create Motorola S-Record files */
+-romwidth=32        /* Set to PRU native word width to enable output into a single file only */
+-order=ms           /* Set output mode to big endian to preserve the byte order when outputting 32-bit words */
+
+ROMS
+{
+    PAGE 0:
+        text: org = 0x0, files = { pruprinter_fw_iram.s19 }
+    PAGE 1:
+        data: org = 0x0, files = { pruprinter_fw_dram.s19 }
+}
