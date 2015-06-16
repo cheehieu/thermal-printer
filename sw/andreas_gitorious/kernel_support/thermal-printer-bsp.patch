@@ -1,0 +1,67 @@
+diff -rpu ti-sdk-am335x-evm-06.00.00.00-unmodified/board-support/linux-3.2.0-psp04.06.00.11/arch/arm/mach-omap2/board-am335xevm.c ti-sdk-am335x-evm-06.00.00.00/board-support/linux-3.2.0-psp04.06.00.11/arch/arm/mach-omap2/board-am335xevm.c
+--- ti-sdk-am335x-evm-06.00.00.00-unmodified/board-support/linux-3.2.0-psp04.06.00.11/arch/arm/mach-omap2/board-am335xevm.c	2013-06-25 16:38:24.000000000 -0500
++++ ti-sdk-am335x-evm-06.00.00.00/board-support/linux-3.2.0-psp04.06.00.11/arch/arm/mach-omap2/board-am335xevm.c	2014-02-26 10:36:01.446077406 -0600
+@@ -710,6 +710,38 @@ static struct pinmux_config gpio_ddr_vtt
+ };
+ 
+ /*
++ * Module pin mux for connecting a thermal printer to PRUSS1
++ *
++ * Since the signals for the PRUSS are not defined in am33xx_muxmodes[] the
++ * function omap_mux_get_by_name() would not be able to find them. Therefore,
++ * we simply use the pin default config for the mux strings which is zero, and
++ * let the omap_mux_init_signal() configure the actual mux settings as it
++ * merges in the value. We could also have modified the am33xx_muxmodes[]
++ * structure and removed the OMAP_MUX_MODE definitions here.
++ * The comments indicate which PRUSS signal line is routed to the pin, the
++ * actual pin on the BeagleBone (white) pin headers P8 or P9, as well as the
++ * signal name that is used for connecting to the thermal printer circuit.
++ */
++static struct pinmux_config thermal_printer_pin_mux[] = {
++    {"gpmc_csn1.gpmc_csn1", AM33XX_INPUT_EN | OMAP_MUX_MODE5},                                      /* pr1_pru1_pru_r30[12] - BB P8.21 - PRINTER_OUT_PWR_N */
++    {"gpmc_csn2.gpmc_csn2", AM33XX_INPUT_EN | AM33XX_PULL_ENBL | AM33XX_PULL_UP | OMAP_MUX_MODE6},  /* pr1_pru1_pru_r31[13] - BB P8.20 - PRINTER_IN_ALARM_N */
++    {"lcd_data0.lcd_data0", AM33XX_INPUT_EN | OMAP_MUX_MODE5},                                      /* pr1_pru1_pru_r30[0]  - BB P8.45 - PRINTER_OUT_PAPER_SENSE*/
++    {"lcd_data1.lcd_data1", AM33XX_INPUT_EN | OMAP_MUX_MODE5},                                      /* pr1_pru1_pru_r30[1]  - BB P8.46 - PRINTER_OUT_STB1_N */
++    {"lcd_data2.lcd_data2", AM33XX_INPUT_EN | OMAP_MUX_MODE5},                                      /* pr1_pru1_pru_r30[2]  - BB P8.43 - PRINTER_OUT_STB23_N */
++    {"lcd_data3.lcd_data3", AM33XX_INPUT_EN | OMAP_MUX_MODE5},                                      /* pr1_pru1_pru_r30[3]  - BB P8.44 - PRINTER_OUT_STB4_N */
++    {"lcd_data4.lcd_data4", AM33XX_INPUT_EN | OMAP_MUX_MODE5},                                      /* pr1_pru1_pru_r30[4]  - BB P8.41 - PRINTER_OUT_STB56_N */
++    {"lcd_data5.lcd_data5", AM33XX_INPUT_EN | OMAP_MUX_MODE5},                                      /* pr1_pru1_pru_r30[5]  - BB P8.42 - PRINTER_OUT_CLK */
++    {"lcd_data6.lcd_data6", AM33XX_INPUT_EN | OMAP_MUX_MODE5},                                      /* pr1_pru1_pru_r30[6]  - BB P8.39 - PRINTER_OUT_LAT_N */
++    {"lcd_data7.lcd_data7", AM33XX_INPUT_EN | OMAP_MUX_MODE5},                                      /* pr1_pru1_pru_r30[7]  - BB P8.40 - PRINTER_OUT_MOSI */
++    {"lcd_vsync.lcd_vsync", AM33XX_INPUT_EN | OMAP_MUX_MODE5},                                      /* pr1_pru1_pru_r30[8]  - BB P8.27 - PRINTER_OUT_A1 */
++    {"lcd_hsync.lcd_hsync", AM33XX_INPUT_EN | OMAP_MUX_MODE5},                                      /* pr1_pru1_pru_r30[9]  - BB P8.29 - PRINTER_OUT_A2 */
++    {"lcd_pclk.lcd_pclk", AM33XX_INPUT_EN | OMAP_MUX_MODE5},                                        /* pr1_pru1_pru_r30[10] - BB P8.28 - PRINTER_OUT_B1 */
++    {"lcd_ac_bias_en.lcd_ac_bias_en", AM33XX_INPUT_EN | OMAP_MUX_MODE5},                            /* pr1_pru1_pru_r30[11] - BB P8.30 - PRINTER_OUT_B2 */
++    {"uart1_rxd.uart1_rxd", AM33XX_INPUT_EN | AM33XX_PULL_ENBL | AM33XX_PULL_UP | OMAP_MUX_MODE6},  /* pr1_pru1_pru_r31[16] - BB P9.26 - PRINTER_IN_PAPER_OUT */
++    {NULL, 0},
++};
++
++/*
+ * @pin_mux - single module pin-mux structure which defines pin-mux
+ *			details for all its pins.
+ */
+@@ -2111,6 +2143,15 @@ static void sgx_init(int evm_id, int pro
+ 		am33xx_gpu_init();
+ 	}
+ }
++
++static void thermal_printer_init(int evm_id, int profile)
++{
++    pr_info("Setting up pin configuration for the thermal printer");
++    setup_pin_mux(thermal_printer_pin_mux);
++
++    return;
++}
++
+ /* General Purpose EVM */
+ static struct evm_dev_cfg gen_purp_evm_dev_cfg[] = {
+ 	{am335x_rtc_init, DEV_ON_BASEBOARD, PROFILE_ALL},
+@@ -2189,6 +2230,7 @@ static struct evm_dev_cfg beaglebone_dev
+ 	{mmc0_init,	DEV_ON_BASEBOARD, PROFILE_NONE},
+ 	{i2c2_init,	DEV_ON_BASEBOARD, PROFILE_NONE},
+ 	{sgx_init,	DEV_ON_BASEBOARD, PROFILE_NONE},
++	{thermal_printer_init, DEV_ON_BASEBOARD, PROFILE_NONE}, /* Configure for baseboard, otherwise device would only get initialized if a cape EEPROM is present */
+ 	{NULL, 0, 0},
+ };
+ 
+Only in ti-sdk-am335x-evm-06.00.00.00/board-support/linux-3.2.0-psp04.06.00.11/arch/arm/mach-omap2: board-am335xevm.c~
