@@ -89,8 +89,8 @@ The print head connectors used are the Molex 0526103072 (30-pin) and the Molex 0
 No software is available yet. TI has since made considerable advances on the Linux-PRU front, but is may be useful to review the software work completed by Andreas. See pru-printer/sw/andreas_gitorious/ for the sources.
 
 ## Next Steps
-#Finish PCB layout
-#Order and assemble prototype components
-#Board bringup
-#Software development
-#Implement more complex features like [cloud-connectivity](https://www.adafruit.com/products/1289)
+# Finish PCB layout
+# Order and assemble prototype components
+# Board bringup
+# Software development
+# Implement more complex features like [cloud-connectivity](https://www.adafruit.com/products/1289)
