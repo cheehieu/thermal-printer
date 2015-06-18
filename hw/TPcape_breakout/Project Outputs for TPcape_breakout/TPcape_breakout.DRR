@@ -1,0 +1,14 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: TPcape_breakout.PcbDoc   6/17/2015  7:10:56 PM
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : TPcape_breakout.TXT
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        35.43mil (0.89992mm)     Round          136              19.87 Inch (504.59 mm)
+---------------------------------------------------------------------------
+Totals                                            136              19.87 Inch (504.59 mm)
+
+Total Processing Time (hh:mm:ss) : 00:00:00
